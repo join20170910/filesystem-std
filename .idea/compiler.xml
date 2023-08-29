@@ -12,10 +12,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="dfs-datanode" target="18" />
+      <module name="dfs-datanode" target="1.8" />
       <module name="dfs-namenode" target="1.8" />
       <module name="dfs-rpc" target="1.8" />
-      <module name="distributed-filesystem" target="1.5" />
+      <module name="distributed-filesystem" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
