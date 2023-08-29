@@ -15,6 +15,10 @@ public class DataNodeManager {
 	 * 内存中维护的datanode列表
 	 */
 	private Map<String,DataNodeInfo> datanodes = new ConcurrentHashMap<String, DataNodeInfo>();
+
+	 public DataNodeManager(){
+		 new DataNodeAliveMonitor().start();
+	 }
 	/**
 	 * datanode进行注册
 	 * @param ip 
@@ -34,7 +38,9 @@ public class DataNodeManager {
 	 */
 	public Boolean heartbeat(String ip, String hostname){
 		DataNodeInfo datanode = datanodes.get(ip + "-" + hostname);
-		datanode.setLatestHeartbeatTime(System.currentTimeMillis());
+		if (datanode != null){
+			datanode.setLatestHeartbeatTime(System.currentTimeMillis());
+		}
 		return true;
 	}
 	class DataNodeAliveMonitor extends Thread{
