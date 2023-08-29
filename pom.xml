@@ -2,10 +2,14 @@
   	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   	<modelVersion>4.0.0</modelVersion>
 
-  	<groupId>com.zhss.demo</groupId>
+  	<groupId>com.zhss.dfs</groupId>
   	<artifactId>distributed-filesystem</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
-  	<packaging>jar</packaging>
+	<modules>
+		<module>dfs-namenode</module>
+		<module>dfs-datanode</module>
+	</modules>
+	<packaging>pom</packaging>
 
   	<name>distributed-filesystem</name>
   	<url>http://maven.apache.org</url>
@@ -15,6 +19,10 @@
   	</properties>
 
   	<dependencies>
-
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>3.23.0</version>
+		</dependency>
   	</dependencies>
 </project>

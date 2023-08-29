@@ -6,10 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="distributed-filesystem" />
+        <module name="dfs-namenode" />
+        <module name="dfs-datanode" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="dfs-datanode" target="18" />
+      <module name="dfs-namenode" target="18" />
       <module name="distributed-filesystem" target="1.5" />
     </bytecodeTargetLevel>
   </component>
