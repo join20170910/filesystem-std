@@ -50,8 +50,8 @@ public class NameNodeOfferService {
 	private void register() {
 		try {
 			CountDownLatch latch = new CountDownLatch(2);  
-			this.activeServiceActor.register(latch); 
-			this.standbyServiceActor.register(latch); 
+			this.activeServiceActor.register();
+			this.standbyServiceActor.register();
 			latch.await();
 			System.out.println("主备NameNode全部注册完毕......");   
 		} catch (Exception e) {
