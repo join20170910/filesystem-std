@@ -8,10 +8,6 @@ import java.io.IOException; /**
 public class NameNode {
 
 	/**
-	 * NameNode是否在运行
-	 */
-	private volatile Boolean shouldRun;
-	/**
 	 * 负责管理元数据的核心组件：管理的是一些文件目录树，支持权限设置
 	 */
 	private FSNamesystem namesystem;
@@ -23,10 +19,6 @@ public class NameNode {
 	 * NameNode对外提供rpc接口的server，可以响应请求
 	 */
 	private NameNodeRpcServer rpcServer;
-	
-	public NameNode() {
-		this.shouldRun = true;
-	}
 	
 	/**
 	 * 初始化NameNode
