@@ -21,6 +21,7 @@ public class NameNodeServiceImpl implements NameNodeServiceGrpc.NameNodeService 
 
   public NameNodeServiceImpl(FSNamesystem namesystem, DataNodeManager datanodeManager) {
 		this.namesystem = namesystem;
+		this.datanodeManager = datanodeManager;
 	}
 	
 	/**

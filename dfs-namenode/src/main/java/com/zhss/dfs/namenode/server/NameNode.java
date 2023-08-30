@@ -1,6 +1,6 @@
 package com.zhss.dfs.namenode.server;
 
-/**
+import java.io.IOException; /**
  * NameNode核心启动类
  * @author zhonghuashishan
  *
@@ -31,30 +31,24 @@ public class NameNode {
 	/**
 	 * 初始化NameNode
 	 */
-	private void initialize() {
+	private void initialize()throws IOException {
 		this.namesystem = new FSNamesystem();
 		this.datanodeManager = new DataNodeManager();
-		this.rpcServer = new NameNodeRpcServer(this.namesystem, this.datanodeManager);  
-		this.rpcServer.start();
+		this.rpcServer = new NameNodeRpcServer(this.namesystem, this.datanodeManager);
 	}
 	
 	/**
 	 * 让NameNode运行起来
 	 */
-	private void run() {
-		try {
-			while(shouldRun) {
-				Thread.sleep(1000);  
-			}  
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private void start()throws Exception {
+		this.rpcServer.start();
+		this.rpcServer.blockUntilShutdown();
 	}
 		
 	public static void main(String[] args) throws Exception {		
 		NameNode namenode = new NameNode();
 		namenode.initialize();
-		namenode.run();
+		namenode.start();
 	}
 	
 }

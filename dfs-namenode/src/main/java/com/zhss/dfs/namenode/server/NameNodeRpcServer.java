@@ -27,7 +27,7 @@ public class NameNodeRpcServer {
      * 启动 一个 rpc server 监听指定的端口号，绑定开发的接口
      * @throws IOException
      */
-    private void start() throws IOException{
+    public void start() throws IOException{
 
     this.server =
         ServerBuilder.forPort(DEFAULT_PORT)
@@ -44,12 +44,12 @@ public class NameNodeRpcServer {
               }
             });
     }
-    private void stop() {
+    public void stop() {
         if (server != null){
             server.shutdown();
         }
 }
-private void blockUntilShutdown()throws InterruptedException{
+    public void blockUntilShutdown()throws InterruptedException{
         if (server != null){
             server.awaitTermination();
         }
