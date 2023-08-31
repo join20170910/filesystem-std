@@ -12,3 +12,9 @@ protoc.exe --plugin=protoc-gen-grpc-java=protoc-gen-grpc-java-0.13.2-windows-x86
 editslog 本次对元数据做了什么修改
 先写缓冲区，设置阈值 触发阈值 在写到磁盘
 双缓冲区机制  缓冲区写磁盘，一个写缓冲区
+
+文件目录树 每隔一段时间写到 fsimage文件中 [checkpoint]
+作用: 8:00:00 -8:10:00之间 checkpoint 写入 fsimage文件中
+此时 NameNode 需要重启，它直接读取fsimage文件加载到内存里变成文件
+目录树，接着把 edit log 文件里的几十条 editslog读取出来，在内存的
+文件 目录 树 里回放一遍
