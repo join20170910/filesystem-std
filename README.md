@@ -18,3 +18,7 @@ editslog 本次对元数据做了什么修改
 此时 NameNode 需要重启，它直接读取fsimage文件加载到内存里变成文件
 目录树，接着把 edit log 文件里的几十条 editslog读取出来，在内存的
 文件 目录 树 里回放一遍
+NameNode 所在的机器做磁盘IO操作太多了
+NameNode 进程也需要 额外分配 一个线程，后台线程定时去做
+磁盘IO操作, 加锁 
+增加 BackupNode 节点  同步 IO  fsimage  每隔一段时间 checkpoint ,文件写入 fsimage
