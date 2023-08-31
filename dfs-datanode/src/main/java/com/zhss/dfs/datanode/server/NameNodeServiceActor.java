@@ -76,23 +76,20 @@ public class NameNodeServiceActor {
 		@Override
 		public void run() {
 			try {
-				// 发送rpc接口调用请求到NameNode去进行注册
-				System.out.println("发送RPC请求到NameNode进行心跳.......");
+				while (true){
+					// 发送rpc接口调用请求到NameNode去进行心跳
+					System.out.println("发送RPC请求到NameNode进行心跳.......");
+					String ip = "127.0.0.1";
+					String hostname = "dfs-data-01";
+					// 通过RPC接口发送到NameNode他的注册接口上去
+					// 发送请求到 namenode server上
 
-				// 在这里进行注册的时候会提供哪些信息过去呢？
-				// 比如说当前这台机器的ip地址、hostname，这两个东西假设是写在配置文件里的
-				// 我们写代码的时候，主要是在本地来运行和测试，有一些ip和hostname，就直接在代码里写死了
-				// 大家后面自己可以留空做一些完善，你可以加一些配置文件读取的代码
-				String ip = "127.0.0.1";
-				String hostname = "dfs-data-01";
-				// 通过RPC接口发送到NameNode他的注册接口上去
-				// 发送请求到 namenode server上
-
-				HeartbeatRequest heartbeatRequest = HeartbeatRequest.newBuilder().setIp(ip)
-						.setHostname(hostname).build();
-				HeartbeatResponse rsponse = namenode.heartbeat(heartbeatRequest);
-				System.out.println("接收以NameNode返回心跳响应 "+ rsponse.getStatus());
-				Thread.sleep(1000);
+					HeartbeatRequest heartbeatRequest = HeartbeatRequest.newBuilder().setIp(ip)
+							.setHostname(hostname).build();
+					HeartbeatResponse rsponse = namenode.heartbeat(heartbeatRequest);
+					System.out.println("接收以NameNode返回心跳响应 "+ rsponse.getStatus());
+					Thread.sleep(30 * 1000);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
