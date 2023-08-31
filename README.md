@@ -8,3 +8,7 @@ win protoc.exe --java_out=./*.proto
 win 命令行:
 protoc.exe --plugin=protoc-gen-grpc-java=protoc-gen-grpc-java-0.13.2-windows-x86_64.exe --grpc-java_out=./*.proto
 
+基于内存的buffer 做一个 写缓冲
+editslog 本次对元数据做了什么修改
+先写缓冲区，设置阈值 触发阈值 在写到磁盘
+双缓冲区机制  缓冲区写磁盘，一个写缓冲区
