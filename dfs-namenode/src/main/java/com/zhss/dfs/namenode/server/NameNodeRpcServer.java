@@ -34,7 +34,7 @@ public class NameNodeRpcServer {
             .addService(NameNodeServiceGrpc.bindService(new NameNodeServiceImpl(namesystem, datanodeManager)))
             .build()
             .start();
-    System.out.println("Server started,listening on" + DEFAULT_PORT);
+    System.out.println("Server started,listening on " + DEFAULT_PORT);
     Runtime.getRuntime()
         .addShutdownHook(
             new Thread() {
