@@ -40,7 +40,9 @@ public class NameNodeRpcServer {
             new Thread() {
               @Override
               public void run() {
+                System.out.println("*** shutting down gRPC server since JVM is shutting down");
                 NameNodeRpcServer.this.stop();
+                System.out.println("*** server shut down");
               }
             });
     }
