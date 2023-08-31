@@ -22,3 +22,7 @@ NameNode 所在的机器做磁盘IO操作太多了
 NameNode 进程也需要 额外分配 一个线程，后台线程定时去做
 磁盘IO操作, 加锁 
 增加 BackupNode 节点  同步 IO  fsimage  每隔一段时间 checkpoint ,文件写入 fsimage
+
+引入 BackupNode 冷备份的解决方案 保障集群数据不丢失
+
+018
