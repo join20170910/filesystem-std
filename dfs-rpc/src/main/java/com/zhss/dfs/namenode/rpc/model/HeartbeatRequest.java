@@ -68,14 +68,14 @@ public  final class HeartbeatRequest extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_descriptor;
+    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_descriptor;
   }
 
   protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_fieldAccessorTable
+    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.zhss.dfs.namenode.rpc.model.HeartbeatRequest.class, com.zhss.dfs.namenode.rpc.model.HeartbeatRequest.Builder.class);
+            HeartbeatRequest.class, Builder.class);
   }
 
   public static final int IP_FIELD_NUMBER = 1;
@@ -184,10 +184,10 @@ public  final class HeartbeatRequest extends
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.zhss.dfs.namenode.rpc.model.HeartbeatRequest)) {
+    if (!(obj instanceof HeartbeatRequest)) {
       return super.equals(obj);
     }
-    com.zhss.dfs.namenode.rpc.model.HeartbeatRequest other = (com.zhss.dfs.namenode.rpc.model.HeartbeatRequest) obj;
+    HeartbeatRequest other = (HeartbeatRequest) obj;
 
     boolean result = true;
     result = result && getIp()
@@ -213,58 +213,58 @@ public  final class HeartbeatRequest extends
     return hash;
   }
 
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(
+  public static HeartbeatRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(
+  public static HeartbeatRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(byte[] data)
+  public static HeartbeatRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(
+  public static HeartbeatRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(java.io.InputStream input)
+  public static HeartbeatRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(
+  public static HeartbeatRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseDelimitedFrom(java.io.InputStream input)
+  public static HeartbeatRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseDelimitedFrom(
+  public static HeartbeatRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(
+  public static HeartbeatRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parseFrom(
+  public static HeartbeatRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -276,7 +276,8 @@ public  final class HeartbeatRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest prototype) {
+
+  public static Builder newBuilder(HeartbeatRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -295,17 +296,17 @@ public  final class HeartbeatRequest extends
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:com.zhss.dfs.namenode.rpc.HeartbeatRequest)
-      com.zhss.dfs.namenode.rpc.model.HeartbeatRequestOrBuilder {
+      HeartbeatRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_descriptor;
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_descriptor;
     }
 
     protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_fieldAccessorTable
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.zhss.dfs.namenode.rpc.model.HeartbeatRequest.class, com.zhss.dfs.namenode.rpc.model.HeartbeatRequest.Builder.class);
+              HeartbeatRequest.class, Builder.class);
     }
 
     // Construct using com.zhss.dfs.namenode.rpc.model.HeartbeatRequest.newBuilder()
@@ -334,23 +335,23 @@ public  final class HeartbeatRequest extends
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_descriptor;
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_HeartbeatRequest_descriptor;
     }
 
-    public com.zhss.dfs.namenode.rpc.model.HeartbeatRequest getDefaultInstanceForType() {
-      return getDefaultInstance();
+    public HeartbeatRequest getDefaultInstanceForType() {
+      return HeartbeatRequest.getDefaultInstance();
     }
 
-    public com.zhss.dfs.namenode.rpc.model.HeartbeatRequest build() {
-      com.zhss.dfs.namenode.rpc.model.HeartbeatRequest result = buildPartial();
+    public HeartbeatRequest build() {
+      HeartbeatRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.zhss.dfs.namenode.rpc.model.HeartbeatRequest buildPartial() {
-      com.zhss.dfs.namenode.rpc.model.HeartbeatRequest result = new com.zhss.dfs.namenode.rpc.model.HeartbeatRequest(this);
+    public HeartbeatRequest buildPartial() {
+      HeartbeatRequest result = new HeartbeatRequest(this);
       result.ip_ = ip_;
       result.hostname_ = hostname_;
       onBuilt();
@@ -384,16 +385,16 @@ public  final class HeartbeatRequest extends
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.zhss.dfs.namenode.rpc.model.HeartbeatRequest) {
-        return mergeFrom((com.zhss.dfs.namenode.rpc.model.HeartbeatRequest)other);
+      if (other instanceof HeartbeatRequest) {
+        return mergeFrom((HeartbeatRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest other) {
-      if (other == getDefaultInstance()) return this;
+    public Builder mergeFrom(HeartbeatRequest other) {
+      if (other == HeartbeatRequest.getDefaultInstance()) return this;
       if (!other.getIp().isEmpty()) {
         ip_ = other.ip_;
         onChanged();
@@ -414,11 +415,11 @@ public  final class HeartbeatRequest extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.zhss.dfs.namenode.rpc.model.HeartbeatRequest parsedMessage = null;
+      HeartbeatRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.zhss.dfs.namenode.rpc.model.HeartbeatRequest) e.getUnfinishedMessage();
+        parsedMessage = (HeartbeatRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -578,12 +579,12 @@ public  final class HeartbeatRequest extends
   }
 
   // @@protoc_insertion_point(class_scope:com.zhss.dfs.namenode.rpc.HeartbeatRequest)
-  private static final com.zhss.dfs.namenode.rpc.model.HeartbeatRequest DEFAULT_INSTANCE;
+  private static final HeartbeatRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.zhss.dfs.namenode.rpc.model.HeartbeatRequest();
+    DEFAULT_INSTANCE = new HeartbeatRequest();
   }
 
-  public static com.zhss.dfs.namenode.rpc.model.HeartbeatRequest getDefaultInstance() {
+  public static HeartbeatRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
@@ -606,7 +607,7 @@ public  final class HeartbeatRequest extends
     return PARSER;
   }
 
-  public com.zhss.dfs.namenode.rpc.model.HeartbeatRequest getDefaultInstanceForType() {
+  public HeartbeatRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

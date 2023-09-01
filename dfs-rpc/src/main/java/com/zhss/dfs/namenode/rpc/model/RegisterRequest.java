@@ -68,14 +68,14 @@ public  final class RegisterRequest extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_descriptor;
+    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_descriptor;
   }
 
   protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_fieldAccessorTable
+    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.zhss.dfs.namenode.rpc.model.RegisterRequest.class, com.zhss.dfs.namenode.rpc.model.RegisterRequest.Builder.class);
+            RegisterRequest.class, Builder.class);
   }
 
   public static final int IP_FIELD_NUMBER = 1;
@@ -184,10 +184,10 @@ public  final class RegisterRequest extends
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.zhss.dfs.namenode.rpc.model.RegisterRequest)) {
+    if (!(obj instanceof RegisterRequest)) {
       return super.equals(obj);
     }
-    com.zhss.dfs.namenode.rpc.model.RegisterRequest other = (com.zhss.dfs.namenode.rpc.model.RegisterRequest) obj;
+    RegisterRequest other = (RegisterRequest) obj;
 
     boolean result = true;
     result = result && getIp()
@@ -213,58 +213,58 @@ public  final class RegisterRequest extends
     return hash;
   }
 
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(
+  public static RegisterRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(
+  public static RegisterRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(byte[] data)
+  public static RegisterRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(
+  public static RegisterRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(java.io.InputStream input)
+  public static RegisterRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(
+  public static RegisterRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseDelimitedFrom(java.io.InputStream input)
+  public static RegisterRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseDelimitedFrom(
+  public static RegisterRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(
+  public static RegisterRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest parseFrom(
+  public static RegisterRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -276,7 +276,8 @@ public  final class RegisterRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.zhss.dfs.namenode.rpc.model.RegisterRequest prototype) {
+
+  public static Builder newBuilder(RegisterRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -295,17 +296,17 @@ public  final class RegisterRequest extends
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:com.zhss.dfs.namenode.rpc.RegisterRequest)
-      com.zhss.dfs.namenode.rpc.model.RegisterRequestOrBuilder {
+      RegisterRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_descriptor;
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_descriptor;
     }
 
     protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_fieldAccessorTable
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.zhss.dfs.namenode.rpc.model.RegisterRequest.class, com.zhss.dfs.namenode.rpc.model.RegisterRequest.Builder.class);
+              RegisterRequest.class, Builder.class);
     }
 
     // Construct using com.zhss.dfs.namenode.rpc.model.RegisterRequest.newBuilder()
@@ -334,23 +335,23 @@ public  final class RegisterRequest extends
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.zhss.dfs.namenode.rpc.model.NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_descriptor;
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterRequest_descriptor;
     }
 
-    public com.zhss.dfs.namenode.rpc.model.RegisterRequest getDefaultInstanceForType() {
-      return getDefaultInstance();
+    public RegisterRequest getDefaultInstanceForType() {
+      return RegisterRequest.getDefaultInstance();
     }
 
-    public com.zhss.dfs.namenode.rpc.model.RegisterRequest build() {
-      com.zhss.dfs.namenode.rpc.model.RegisterRequest result = buildPartial();
+    public RegisterRequest build() {
+      RegisterRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.zhss.dfs.namenode.rpc.model.RegisterRequest buildPartial() {
-      com.zhss.dfs.namenode.rpc.model.RegisterRequest result = new com.zhss.dfs.namenode.rpc.model.RegisterRequest(this);
+    public RegisterRequest buildPartial() {
+      RegisterRequest result = new RegisterRequest(this);
       result.ip_ = ip_;
       result.hostname_ = hostname_;
       onBuilt();
@@ -384,16 +385,16 @@ public  final class RegisterRequest extends
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.zhss.dfs.namenode.rpc.model.RegisterRequest) {
-        return mergeFrom((com.zhss.dfs.namenode.rpc.model.RegisterRequest)other);
+      if (other instanceof RegisterRequest) {
+        return mergeFrom((RegisterRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.zhss.dfs.namenode.rpc.model.RegisterRequest other) {
-      if (other == getDefaultInstance()) return this;
+    public Builder mergeFrom(RegisterRequest other) {
+      if (other == RegisterRequest.getDefaultInstance()) return this;
       if (!other.getIp().isEmpty()) {
         ip_ = other.ip_;
         onChanged();
@@ -414,11 +415,11 @@ public  final class RegisterRequest extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.zhss.dfs.namenode.rpc.model.RegisterRequest parsedMessage = null;
+      RegisterRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.zhss.dfs.namenode.rpc.model.RegisterRequest) e.getUnfinishedMessage();
+        parsedMessage = (RegisterRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -578,12 +579,12 @@ public  final class RegisterRequest extends
   }
 
   // @@protoc_insertion_point(class_scope:com.zhss.dfs.namenode.rpc.RegisterRequest)
-  private static final com.zhss.dfs.namenode.rpc.model.RegisterRequest DEFAULT_INSTANCE;
+  private static final RegisterRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.zhss.dfs.namenode.rpc.model.RegisterRequest();
+    DEFAULT_INSTANCE = new RegisterRequest();
   }
 
-  public static com.zhss.dfs.namenode.rpc.model.RegisterRequest getDefaultInstance() {
+  public static RegisterRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
@@ -606,7 +607,7 @@ public  final class RegisterRequest extends
     return PARSER;
   }
 
-  public com.zhss.dfs.namenode.rpc.model.RegisterRequest getDefaultInstanceForType() {
+  public RegisterRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

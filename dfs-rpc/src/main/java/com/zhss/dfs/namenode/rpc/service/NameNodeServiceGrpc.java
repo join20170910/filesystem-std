@@ -1,10 +1,17 @@
 package com.zhss.dfs.namenode.rpc.service;
 
-import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
 
 @javax.annotation.Generated("by gRPC proto compiler")
 public class NameNodeServiceGrpc {
@@ -32,6 +39,15 @@ public class NameNodeServiceGrpc {
               "com.zhss.dfs.namenode.rpc.NameNodeService", "heartbeat"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.HeartbeatResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi
+  public static final io.grpc.MethodDescriptor<com.zhss.dfs.namenode.rpc.model.MkdirRequest,
+      com.zhss.dfs.namenode.rpc.model.MkdirResponse> METHOD_MKDIR =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "com.zhss.dfs.namenode.rpc.NameNodeService", "mkdir"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.MkdirRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.MkdirResponse.getDefaultInstance()));
 
   public static NameNodeServiceStub newStub(io.grpc.Channel channel) {
     return new NameNodeServiceStub(channel);
@@ -54,6 +70,9 @@ public class NameNodeServiceGrpc {
 
     public void heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request,
         io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse> responseObserver);
+
+    public void mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse> responseObserver);
   }
 
   public static interface NameNodeServiceBlockingClient {
@@ -61,6 +80,8 @@ public class NameNodeServiceGrpc {
     public com.zhss.dfs.namenode.rpc.model.RegisterResponse register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request);
 
     public com.zhss.dfs.namenode.rpc.model.HeartbeatResponse heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request);
+
+    public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request);
   }
 
   public static interface NameNodeServiceFutureClient {
@@ -70,6 +91,9 @@ public class NameNodeServiceGrpc {
 
     public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse> heartbeat(
         com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request);
+
+    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.MkdirResponse> mkdir(
+        com.zhss.dfs.namenode.rpc.model.MkdirRequest request);
   }
 
   public static class NameNodeServiceStub extends io.grpc.stub.AbstractStub<NameNodeServiceStub>
@@ -105,6 +129,15 @@ public class NameNodeServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_HEARTBEAT, getCallOptions()), request, responseObserver);
     }
+
+    @Override
+    public void mkdir(
+        com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse>
+            responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_MKDIR, getCallOptions()), request, responseObserver);
+    }
   }
 
   public static class NameNodeServiceBlockingStub extends io.grpc.stub.AbstractStub<NameNodeServiceBlockingStub>
@@ -136,6 +169,13 @@ public class NameNodeServiceGrpc {
         com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_HEARTBEAT, getCallOptions(), request);
+    }
+
+    @Override
+    public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(
+        com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_MKDIR, getCallOptions(), request);
     }
   }
 
@@ -171,10 +211,19 @@ public class NameNodeServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_HEARTBEAT, getCallOptions()), request);
     }
+
+    @Override
+    public com.google.common.util.concurrent.ListenableFuture<
+            com.zhss.dfs.namenode.rpc.model.MkdirResponse>
+        mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_MKDIR, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTER = 0;
   private static final int METHODID_HEARTBEAT = 1;
+  private static final int METHODID_MKDIR = 2;
 
   private static class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -199,6 +248,10 @@ public class NameNodeServiceGrpc {
         case METHODID_HEARTBEAT:
           serviceImpl.heartbeat((com.zhss.dfs.namenode.rpc.model.HeartbeatRequest) request,
               (io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse>) responseObserver);
+          break;
+        case METHODID_MKDIR:
+          serviceImpl.mkdir((com.zhss.dfs.namenode.rpc.model.MkdirRequest) request,
+              (io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -232,6 +285,13 @@ public class NameNodeServiceGrpc {
               com.zhss.dfs.namenode.rpc.model.HeartbeatRequest,
               com.zhss.dfs.namenode.rpc.model.HeartbeatResponse>(
                 serviceImpl, METHODID_HEARTBEAT)))
+        .addMethod(
+          METHOD_MKDIR,
+          asyncUnaryCall(
+            new MethodHandlers<
+              com.zhss.dfs.namenode.rpc.model.MkdirRequest,
+              com.zhss.dfs.namenode.rpc.model.MkdirResponse>(
+                serviceImpl, METHODID_MKDIR)))
         .build();
   }
 }

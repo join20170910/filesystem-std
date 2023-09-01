@@ -4,25 +4,25 @@
 package com.zhss.dfs.namenode.rpc.model;
 
 /**
- * Protobuf type {@code com.zhss.dfs.namenode.rpc.RegisterResponse}
+ * Protobuf type {@code com.zhss.dfs.namenode.rpc.MkdirRequest}
  */
-public  final class RegisterResponse extends
+public  final class MkdirRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.zhss.dfs.namenode.rpc.RegisterResponse)
-    RegisterResponseOrBuilder {
-  // Use RegisterResponse.newBuilder() to construct.
-  private RegisterResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // @@protoc_insertion_point(message_implements:com.zhss.dfs.namenode.rpc.MkdirRequest)
+    MkdirRequestOrBuilder {
+  // Use MkdirRequest.newBuilder() to construct.
+  private MkdirRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private RegisterResponse() {
-    status_ = 0;
+  private MkdirRequest() {
+    path_ = "";
   }
 
   @Override
   public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
-  private RegisterResponse(
+  private MkdirRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -42,9 +42,10 @@ public  final class RegisterResponse extends
             }
             break;
           }
-          case 8: {
+          case 10: {
+            String s = input.readStringRequireUtf8();
 
-            status_ = input.readInt32();
+            path_ = s;
             break;
           }
         }
@@ -60,23 +61,46 @@ public  final class RegisterResponse extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterResponse_descriptor;
+    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_MkdirRequest_descriptor;
   }
 
   protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterResponse_fieldAccessorTable
+    return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_MkdirRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            RegisterResponse.class, Builder.class);
+            MkdirRequest.class, Builder.class);
   }
 
-  public static final int STATUS_FIELD_NUMBER = 1;
-  private int status_;
+  public static final int PATH_FIELD_NUMBER = 1;
+  private volatile Object path_;
   /**
-   * <code>optional int32 status = 1;</code>
+   * <code>optional string path = 1;</code>
    */
-  public int getStatus() {
-    return status_;
+  public String getPath() {
+    Object ref = path_;
+    if (ref instanceof String) {
+      return (String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      String s = bs.toStringUtf8();
+      path_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>optional string path = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getPathBytes() {
+    Object ref = path_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+      path_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -91,8 +115,8 @@ public  final class RegisterResponse extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (status_ != 0) {
-      output.writeInt32(1, status_);
+    if (!getPathBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, path_);
     }
   }
 
@@ -101,9 +125,8 @@ public  final class RegisterResponse extends
     if (size != -1) return size;
 
     size = 0;
-    if (status_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, status_);
+    if (!getPathBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, path_);
     }
     memoizedSize = size;
     return size;
@@ -116,14 +139,14 @@ public  final class RegisterResponse extends
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof RegisterResponse)) {
+    if (!(obj instanceof MkdirRequest)) {
       return super.equals(obj);
     }
-    RegisterResponse other = (RegisterResponse) obj;
+    MkdirRequest other = (MkdirRequest) obj;
 
     boolean result = true;
-    result = result && (getStatus()
-        == other.getStatus());
+    result = result && getPath()
+        .equals(other.getPath());
     return result;
   }
 
@@ -134,65 +157,65 @@ public  final class RegisterResponse extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptorForType().hashCode();
-    hash = (37 * hash) + STATUS_FIELD_NUMBER;
-    hash = (53 * hash) + getStatus();
+    hash = (37 * hash) + PATH_FIELD_NUMBER;
+    hash = (53 * hash) + getPath().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static RegisterResponse parseFrom(
+  public static MkdirRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static RegisterResponse parseFrom(
+  public static MkdirRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static RegisterResponse parseFrom(byte[] data)
+  public static MkdirRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static RegisterResponse parseFrom(
+  public static MkdirRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static RegisterResponse parseFrom(java.io.InputStream input)
+  public static MkdirRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static RegisterResponse parseFrom(
+  public static MkdirRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static RegisterResponse parseDelimitedFrom(java.io.InputStream input)
+  public static MkdirRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static RegisterResponse parseDelimitedFrom(
+  public static MkdirRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static RegisterResponse parseFrom(
+  public static MkdirRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static RegisterResponse parseFrom(
+  public static MkdirRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -205,7 +228,7 @@ public  final class RegisterResponse extends
     return DEFAULT_INSTANCE.toBuilder();
   }
 
-  public static Builder newBuilder(RegisterResponse prototype) {
+  public static Builder newBuilder(MkdirRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -219,25 +242,25 @@ public  final class RegisterResponse extends
     return builder;
   }
   /**
-   * Protobuf type {@code com.zhss.dfs.namenode.rpc.RegisterResponse}
+   * Protobuf type {@code com.zhss.dfs.namenode.rpc.MkdirRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.zhss.dfs.namenode.rpc.RegisterResponse)
-      RegisterResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.zhss.dfs.namenode.rpc.MkdirRequest)
+      MkdirRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterResponse_descriptor;
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_MkdirRequest_descriptor;
     }
 
     protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterResponse_fieldAccessorTable
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_MkdirRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              RegisterResponse.class, Builder.class);
+              MkdirRequest.class, Builder.class);
     }
 
-    // Construct using com.zhss.dfs.namenode.rpc.model.RegisterResponse.newBuilder()
+    // Construct using com.zhss.dfs.namenode.rpc.model.MkdirRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -254,31 +277,31 @@ public  final class RegisterResponse extends
     }
     public Builder clear() {
       super.clear();
-      status_ = 0;
+      path_ = "";
 
       return this;
     }
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_RegisterResponse_descriptor;
+      return NameNodeRpcModel.internal_static_com_zhss_dfs_namenode_rpc_MkdirRequest_descriptor;
     }
 
-    public RegisterResponse getDefaultInstanceForType() {
-      return RegisterResponse.getDefaultInstance();
+    public MkdirRequest getDefaultInstanceForType() {
+      return MkdirRequest.getDefaultInstance();
     }
 
-    public RegisterResponse build() {
-      RegisterResponse result = buildPartial();
+    public MkdirRequest build() {
+      MkdirRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public RegisterResponse buildPartial() {
-      RegisterResponse result = new RegisterResponse(this);
-      result.status_ = status_;
+    public MkdirRequest buildPartial() {
+      MkdirRequest result = new MkdirRequest(this);
+      result.path_ = path_;
       onBuilt();
       return result;
     }
@@ -310,18 +333,19 @@ public  final class RegisterResponse extends
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof RegisterResponse) {
-        return mergeFrom((RegisterResponse) other);
+      if (other instanceof MkdirRequest) {
+        return mergeFrom((MkdirRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(RegisterResponse other) {
-      if (other == RegisterResponse.getDefaultInstance()) return this;
-      if (other.getStatus() != 0) {
-        setStatus(other.getStatus());
+    public Builder mergeFrom(MkdirRequest other) {
+      if (other == MkdirRequest.getDefaultInstance()) return this;
+      if (!other.getPath().isEmpty()) {
+        path_ = other.path_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -335,11 +359,11 @@ public  final class RegisterResponse extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      RegisterResponse parsedMessage = null;
+      MkdirRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (RegisterResponse) e.getUnfinishedMessage();
+        parsedMessage = (MkdirRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -349,28 +373,70 @@ public  final class RegisterResponse extends
       return this;
     }
 
-    private int status_ ;
+    private Object path_ = "";
     /**
-     * <code>optional int32 status = 1;</code>
+     * <code>optional string path = 1;</code>
      */
-    public int getStatus() {
-      return status_;
+    public String getPath() {
+      Object ref = path_;
+      if (!(ref instanceof String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        path_ = s;
+        return s;
+      } else {
+        return (String) ref;
+      }
     }
     /**
-     * <code>optional int32 status = 1;</code>
+     * <code>optional string path = 1;</code>
      */
-    public Builder setStatus(int value) {
-      
-      status_ = value;
+    public com.google.protobuf.ByteString
+        getPathBytes() {
+      Object ref = path_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        path_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>optional string path = 1;</code>
+     */
+    public Builder setPath(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      path_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>optional int32 status = 1;</code>
+     * <code>optional string path = 1;</code>
      */
-    public Builder clearStatus() {
+    public Builder clearPath() {
       
-      status_ = 0;
+      path_ = getDefaultInstance().getPath();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>optional string path = 1;</code>
+     */
+    public Builder setPathBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      path_ = value;
       onChanged();
       return this;
     }
@@ -385,39 +451,39 @@ public  final class RegisterResponse extends
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.zhss.dfs.namenode.rpc.RegisterResponse)
+    // @@protoc_insertion_point(builder_scope:com.zhss.dfs.namenode.rpc.MkdirRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:com.zhss.dfs.namenode.rpc.RegisterResponse)
-  private static final RegisterResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.zhss.dfs.namenode.rpc.MkdirRequest)
+  private static final MkdirRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new RegisterResponse();
+    DEFAULT_INSTANCE = new MkdirRequest();
   }
 
-  public static RegisterResponse getDefaultInstance() {
+  public static MkdirRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<RegisterResponse>
-      PARSER = new com.google.protobuf.AbstractParser<RegisterResponse>() {
-    public RegisterResponse parsePartialFrom(
+  private static final com.google.protobuf.Parser<MkdirRequest>
+      PARSER = new com.google.protobuf.AbstractParser<MkdirRequest>() {
+    public MkdirRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RegisterResponse(input, extensionRegistry);
+        return new MkdirRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<RegisterResponse> parser() {
+  public static com.google.protobuf.Parser<MkdirRequest> parser() {
     return PARSER;
   }
 
   @Override
-  public com.google.protobuf.Parser<RegisterResponse> getParserForType() {
+  public com.google.protobuf.Parser<MkdirRequest> getParserForType() {
     return PARSER;
   }
 
-  public RegisterResponse getDefaultInstanceForType() {
+  public MkdirRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
