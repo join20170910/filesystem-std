@@ -12,7 +12,12 @@ public class NameNodeServiceImpl implements NameNodeServiceGrpc.NameNodeService 
 
   public static final Integer STATUS_SUCCESS = 1;
   public static final Integer STATUS_FAILURE = 2;
-  /** 负责管理元数据的核心组件 */
+
+  /** 负责管理元数据的核心组件
+   * 它是一个逻辑上的组件,主要是负责管理元数据的更新
+   * 比如说你要更新内存内的文件目录树
+   * */
+
   private FSNamesystem namesystem;
   /** 负责管理集群中所有的datanode的组件 */
   private DataNodeManager datanodeManager;

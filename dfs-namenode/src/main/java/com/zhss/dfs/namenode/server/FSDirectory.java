@@ -12,6 +12,8 @@ public class FSDirectory {
 	
 	/**
 	 * 内存中的文件目录树
+	 * 创建目录, 删除目录,重命名目录,创建文件,删除文件,重命名文件
+	 * 相关的一些操作,都是在维护内存里的文件目录树,本质都是对这个内存的数据结构更新操作
 	 */
 	private INodeDirectory dirTree;
 	
@@ -29,7 +31,8 @@ public class FSDirectory {
 		// 如果说有的话，那么再判断一下，“/usr”目录下，有没有一个“/warehouse”目录的存在
 		// 如果说没有，那么就得先创建一个“/warehosue”对应的目录，挂在“/usr”目录下
 		// 接着再对“/hive”这个目录创建一个节点挂载上去
-	
+
+		//内存数据结构,更新的时候必须加锁
 		synchronized(dirTree) {
 			String[] pathes = path.split("/");
 			INodeDirectory parent = dirTree;
@@ -46,10 +49,13 @@ public class FSDirectory {
 				}
 				
 				INodeDirectory child = new INodeDirectory(splitedPath); 
-				parent.addChild(child);  
+				parent.addChild(child);
+				parent =child;
 			}
 		}
+    System.out.println("文件目录树: " + dirTree);
 	}
+
 	
 	/**
 	 * 对文件目录树递归查找目录
