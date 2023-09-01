@@ -25,4 +25,5 @@ NameNode 进程也需要 额外分配 一个线程，后台线程定时去做
 
 引入 BackupNode 冷备份的解决方案 保障集群数据不丢失
 
+![img.png](img.png)
 018
