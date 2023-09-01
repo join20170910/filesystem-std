@@ -86,8 +86,8 @@ public class NameNodeServiceActor {
 
 					HeartbeatRequest heartbeatRequest = HeartbeatRequest.newBuilder().setIp(ip)
 							.setHostname(hostname).build();
-					HeartbeatResponse rsponse = namenode.heartbeat(heartbeatRequest);
-					System.out.println("接收以NameNode返回心跳响应 "+ rsponse.getStatus());
+					HeartbeatResponse response = namenode.heartbeat(heartbeatRequest);
+					System.out.println("接收以NameNode返回心跳响应 "+ response.getStatus());
 					Thread.sleep(30 * 1000);
 				}
 			} catch (Exception e) {
