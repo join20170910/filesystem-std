@@ -53,8 +53,18 @@ public class FSDirectory {
 				parent =child;
 			}
 		}
-    System.out.println("文件目录树: " + dirTree);
+       printDirTree(dirTree,"");
 	}
+
+	private void printDirTree(INodeDirectory dirTree,String blank) {
+		if (dirTree.getChildren().size() == 0){
+			return;
+		}
+		for (INode dir: dirTree.getChildren()){
+      System.out.println(((INodeDirectory)dir).getPath());
+	  printDirTree((INodeDirectory) dir,blank +" ");
+		}
+}
 
 	
 	/**
