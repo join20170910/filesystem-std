@@ -44,7 +44,7 @@ public class DoubleBuffer {
   class EditLogBuffer {
 
     /** 字节数组 IO 流 */
-    ByteArrayOutputStream out = new ByteArrayOutputStream(EDIT_LOG_BUFFER_LIMIT);
+    ByteArrayOutputStream out = new ByteArrayOutputStream(EDIT_LOG_BUFFER_LIMIT * 2);
     /**
      * 将 editslog日志写入缓冲区
      *
@@ -59,8 +59,8 @@ public class DoubleBuffer {
      *
      * @return
      */
-    public Long size() {
-      return 0L;
+    public int size() {
+      return out.size();
     }
 
     public void flush() {}
