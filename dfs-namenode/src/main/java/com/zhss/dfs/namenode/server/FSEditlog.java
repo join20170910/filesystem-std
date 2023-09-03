@@ -45,7 +45,6 @@ public class FSEditlog {
 	public void logEdit(String content) {
 		// 这里必须得直接加锁
 		synchronized(this) {
-
 			//刚进来就直接检查一下是否有人正在调度一次刷盘的操作
 			waitSchedulingSync();
 			// 获取全局唯一递增的txid，代表了edits log的序号
@@ -106,13 +105,15 @@ public class FSEditlog {
 					return;
 				}
 				//如果当前线程的txid=80,就说明它需要去刷数据,但是需要等待别人先刷新完成
-				while(isSyncRunning) {
-					try {
+
+				try {
+					while(isSyncRunning) {
 						wait(1000);
-					} catch (Exception e) {
-						e.printStackTrace();  
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
+
 			}
 			
 			// 交换两块缓冲区
