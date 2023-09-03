@@ -55,17 +55,17 @@ public class DoubleBuffer {
      */
     FileChannel editsLogFileChannel;
 
+    /**
+     * 当前这块缓冲区写入的最大的一个txid
+     */
+    long maxTxid =0L;
+    /**
+     * 上一次flush到磁盘的时候它的最大的txid是多少
+     */
+    long lastMaxTxid =0L;
+
     public EditLogBuffer(){
       this.buffer = new ByteArrayOutputStream(EDIT_LOG_BUFFER_LIMIT * 2);
-      String editsLogFilePath = "/Users/apple/IdeaProjects/distributed-filesystem/editslog/dfs-edits.log";
-      try{
-        //读写模式,数据写入缓冲区中
-        RandomAccessFile file = new RandomAccessFile(editsLogFilePath,"rw");
-        FileOutputStream out =new FileOutputStream(file.getFD());
-        this.editsLogFileChannel = out.getChannel();
-      }catch (Exception e){
-        e.printStackTrace();
-      }
     }
 
     /**
@@ -74,6 +74,7 @@ public class DoubleBuffer {
      * @param log
      */
     public void write(EditLog log)throws IOException {
+      this.maxTxid = log.getTxid();
       buffer.write(log.getContent().getBytes());
       buffer.write("\n".getBytes());
       System.out.println("当前缓冲区的大小是:" + size());
@@ -95,9 +96,34 @@ public class DoubleBuffer {
 
       byte[] data = buffer.toByteArray();
       ByteBuffer dataBuffer = ByteBuffer.wrap(data);
-      editsLogFileChannel.write(dataBuffer);
-      //强制把数据刷到磁盘上
-      editsLogFileChannel.force(false);
+      String editsLogFilePath = "/Users/apple/IdeaProjects/distributed-filesystem/editslog/" + "edits-" + (++lastMaxTxid)
+              +  "-" + maxTxid + ".log";
+      RandomAccessFile file = null;
+      FileOutputStream out = null;
+      FileChannel editsLogFileChannel = null;
+      try{
+        //读写模式,数据写入缓冲区中
+           file = new RandomAccessFile(editsLogFilePath,"rw");
+           out =new FileOutputStream(file.getFD());
+           editsLogFileChannel = out.getChannel();
+           editsLogFileChannel.write(dataBuffer);
+          //强制把数据刷到磁盘上
+          editsLogFileChannel.force(false);
+      }catch (Exception e){
+        e.printStackTrace();
+      }finally{
+
+        if (out != null){
+          out.close();
+        }
+        if (file != null){
+          file.close();
+        }
+        if (editsLogFileChannel != null){
+          editsLogFileChannel.close();
+        }
+      }
+      this.lastMaxTxid = maxTxid;
     }
 
     /**
