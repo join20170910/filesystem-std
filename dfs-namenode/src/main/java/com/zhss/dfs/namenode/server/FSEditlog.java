@@ -1,6 +1,5 @@
 package com.zhss.dfs.namenode.server;
 
-import java.util.LinkedList;
 
 /**
  * 负责管理edits log日志的核心组件
@@ -40,7 +39,7 @@ public class FSEditlog {
 	
 	/**
 	 * 记录edits log日志
-	 * @param log
+	 * @param content
 	 */
 	public void logEdit(String content) {
 		// 这里必须得直接加锁
@@ -54,7 +53,11 @@ public class FSEditlog {
 			EditLog log = new EditLog(txid, content); 
 			
 			// 将edits log写入内存缓冲中，不是直接刷入磁盘文件
-			editLogBuffer.write(log);  
+			editLogBuffer.write(log);
+			//每次写完一条editslog之后,就应该检查一下当前这个缓冲区是否满了
+			if (editLogBuffer.shouldSyncToDisk()){
+
+			}
 		}
 		
 		logSync();
@@ -126,75 +129,6 @@ public class FSEditlog {
 		}
 	}
 	
-	/**
-	 * 代表了一条edits log
-	 * @author zhonghuashishan
-	 *
-	 */
-	class EditLog {
 	
-		long txid;
-		String content;
-		
-		public EditLog(long txid, String content) {
-			this.txid = txid;
-			this.content = content;
-		}
-		
-	}
-	
-	/**
-	 * 内存双缓冲
-	 * @author zhonghuashishan
-	 *
-	 */
-	class DoubleBuffer {
-		
-		/**
-		 * 是专门用来承载线程写入edits log
-		 */
-		LinkedList<EditLog> currentBuffer = new LinkedList<EditLog>();
-		/**
-		 * 专门用来将数据同步到磁盘中去的一块缓冲
-		 */
-		LinkedList<EditLog> syncBuffer = new LinkedList<EditLog>();
-		
-		/**
-		 * 将edits log写到内存缓冲里去
-		 * @param log
-		 */
-		public void write(EditLog log) {
-			currentBuffer.add(log);
-		}
-		
-		/**
-		 * 交换两块缓冲区，为了同步内存数据到磁盘做准备
-		 */
-		public void setReadyToSync() {
-			LinkedList<EditLog> tmp = currentBuffer;
-			currentBuffer = syncBuffer;
-			syncBuffer = tmp;
-		}
-		
-		/**
-		 * 获取sync buffer缓冲区里的最大的一个txid
-		 * @return
-		 */
-		public Long getSyncMaxTxid() {
-			return syncBuffer.getLast().txid;
-		}
-		
-		/**
-		 * 将syncBuffer缓冲区中的数据刷入磁盘中
-		 */
-		public void flush() {
-			for(EditLog log : syncBuffer) {
-				System.out.println("将edit log写入磁盘文件中：" + log); 
-				// 正常来说，就是用文件输出流将数据写入磁盘文件中
-			}
-			syncBuffer.clear();  
-		}
-		
-	}
 	
 }
