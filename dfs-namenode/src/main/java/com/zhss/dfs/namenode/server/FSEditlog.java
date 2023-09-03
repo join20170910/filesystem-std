@@ -1,6 +1,6 @@
 package com.zhss.dfs.namenode.server;
 
-
+import java.io.IOException;
 /**
  * 负责管理edits log日志的核心组件
  * @author zhonghuashishan
@@ -53,10 +53,14 @@ public class FSEditlog {
 			localTxid.set(txid); // 放到ThreadLocal里去，相当于就是维护了一份本地线程的副本
 			
 			// 构造一条edits log对象
-			EditLog log = new EditLog(txid, content); 
-			
-			// 将edits log写入内存缓冲中，不是直接刷入磁盘文件
-			doubleBuffer.write(log);
+			EditLog log = new EditLog(txid, content);
+
+      // 将edits log写入内存缓冲中，不是直接刷入磁盘文件
+		 try {
+				doubleBuffer.write(log);
+			  } catch (IOException e) {
+				e.printStackTrace();
+			  }
 			//每次写完一条editslog之后,就应该检查一下当前这个缓冲区是否满了
 			if (!doubleBuffer.shouldSyncToDisk()){
                 return;

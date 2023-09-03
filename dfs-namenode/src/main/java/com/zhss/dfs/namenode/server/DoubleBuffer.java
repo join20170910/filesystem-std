@@ -1,4 +1,6 @@
 package com.zhss.dfs.namenode.server;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;import java.nio.charset.StandardCharsets;
 /**
  * 内存双缓冲
  *
@@ -6,7 +8,7 @@ package com.zhss.dfs.namenode.server;
  */
 public class DoubleBuffer {
 
-  public final Long EDIT_LOG_BUFFER_LIMIT = 512 * 1024L;
+  public final Integer EDIT_LOG_BUFFER_LIMIT = 512 * 1024;
 
   /** 是专门用来承载线程写入edits log */
   private EditLogBuffer currentBuffer = new EditLogBuffer();
@@ -20,7 +22,7 @@ public class DoubleBuffer {
    *
    * @param log
    */
-  public void write(EditLog log) {
+  public void write(EditLog log)throws IOException {
     currentBuffer.write(log);
     maxTxid = log.getTxid();
   }
@@ -40,14 +42,16 @@ public class DoubleBuffer {
 
   /** EditsLog 缓冲区 */
   class EditLogBuffer {
+
+    /** 字节数组 IO 流 */
+    ByteArrayOutputStream out = new ByteArrayOutputStream(EDIT_LOG_BUFFER_LIMIT);
     /**
      * 将 editslog日志写入缓冲区
      *
      * @param log
      */
-    public void write(EditLog log) {
-      System.out.println("在currentBuffer中写入一条数据:" + log.toString());
-
+    public void write(EditLog log)throws IOException {
+      out.write(log.getContent().getBytes());
     }
 
     /**
