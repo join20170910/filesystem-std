@@ -42,3 +42,15 @@ channel.position(channel.size());
 byte[] data = ByteArrayOutputStream.toCharArray();
 channel.force(false);
 ByteArrayOutputStream.reset();
+
+日志文件进行分段存储机制设计
+可以拆分为多个日志文件
+每次刷新磁盘都是刷一个新的 editslog日志文件 日志文件的名字就是txid~txid.log格式
+是最好的。如果你checkpoint 之后要删除一些editslog日志文件,完全可以把之前的一些
+文件给物理删除即可。
+每次在落地磁盘的时候，都是把上一次落地磁盘的最大一个txid+1
+每次落地磁盘都记录好本次落地的时候最大的txid是多少，下次在落地磁盘就可以取出来
+进行全名就可以了,每次落地磁盘都是一个新的日志文件 
+
+
+
