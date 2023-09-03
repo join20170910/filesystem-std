@@ -33,3 +33,12 @@ ByteArrayOutputStream
 把字节数组通过NIO的方式,Buffer +FileChannel的方式,
 写入磁盘文件中。
 
+读写模式,数据写入缓冲区中
+RandomAccessFile file = new RandomAccessFile(name,"rw)
+FileOutputStream out =new FileOutputStream(file.getFD());
+FileChannel channel = out.getChannel();
+定位到文件里的最后一个位置,进行append追加写
+channel.position(channel.size());
+byte[] data = ByteArrayOutputStream.toCharArray();
+channel.force(false);
+ByteArrayOutputStream.reset();
