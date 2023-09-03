@@ -1,5 +1,5 @@
 package com.zhss.dfs.namenode.server;
-	/**
+	import com.alibaba.fastjson.JSONObject; /**
 	 * 代表了一条edits log
 	 * @author zhonghuashishan
 	 *
@@ -20,6 +20,11 @@ package com.zhss.dfs.namenode.server;
 
   public void setTxid(long txid) {
     this.txid = txid;
+
+      JSONObject jsonObject = JSONObject.parseObject(content);
+      jsonObject.put("txid",txid);
+
+      this.content = jsonObject.toString();
   }
 
   public String getContent() {
