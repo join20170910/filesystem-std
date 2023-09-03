@@ -26,4 +26,10 @@ NameNode 进程也需要 额外分配 一个线程，后台线程定时去做
 引入 BackupNode 冷备份的解决方案 保障集群数据不丢失
 
 ![img.png](img.png)
-018
+
+基于字节数组IO流构建内存中的数据缓冲区
+ByteArrayOutputStream
+内部维护一个内存缓冲区,然后可以从里面获取一个字节数组，
+把字节数组通过NIO的方式,Buffer +FileChannel的方式,
+写入磁盘文件中。
+
