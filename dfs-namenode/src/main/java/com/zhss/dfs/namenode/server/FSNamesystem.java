@@ -27,8 +27,9 @@ public class FSNamesystem {
 	 * @return 是否成功
 	 */
 	public Boolean mkdir(String path) throws Exception {
-		this.directory.mkdir(path); 
-		this.editlog.logEdit("创建了一个目录：" + path);   
+		// 基于FSDirectory组件管理文件目录树
+		this.directory.mkdir(path);
+		this.editlog.logEdit("{'OP':'MKDIR','PATH':'" + path +"'}");
 		return true;
 	}
 
