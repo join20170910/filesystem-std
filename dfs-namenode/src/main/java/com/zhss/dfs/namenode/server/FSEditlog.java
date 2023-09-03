@@ -15,19 +15,20 @@ public class FSEditlog {
 	/**
 	 * 内存双缓冲区
 	 */
-	private DoubleBuffer editLogBuffer = new DoubleBuffer();
+	private DoubleBuffer doubleBuffer = new DoubleBuffer();
 	/**
 	 * 当前是否在将内存缓冲刷入磁盘中
 	 */
 	private volatile Boolean isSyncRunning = false;
 	/**
-	 * 当前是否有线程在等待刷新下一批edits log到磁盘里去
-	 */
-	private volatile Boolean isWaitSync = false;
-	/**
 	 * 在同步到磁盘中的最大的一个txid
 	 */
-	private volatile Long syncMaxTxid = 0L;
+	private volatile Long syncTxid = 0L;
+
+	/**
+	 * 是否调度一次刷盘的操作
+	 */
+	private volatile Boolean isSchedulingSync = false;
 	/**
 	 * 每个线程自己本地的txid副本
 	 */
@@ -44,6 +45,9 @@ public class FSEditlog {
 	public void logEdit(String content) {
 		// 这里必须得直接加锁
 		synchronized(this) {
+
+			//刚进来就直接检查一下是否有人正在调度一次刷盘的操作
+			waitSchedulingSync();
 			// 获取全局唯一递增的txid，代表了edits log的序号
 			txidSeq++;
 			long txid = txidSeq;
@@ -53,15 +57,30 @@ public class FSEditlog {
 			EditLog log = new EditLog(txid, content); 
 			
 			// 将edits log写入内存缓冲中，不是直接刷入磁盘文件
-			editLogBuffer.write(log);
+			doubleBuffer.write(log);
 			//每次写完一条editslog之后,就应该检查一下当前这个缓冲区是否满了
-			if (editLogBuffer.shouldSyncToDisk()){
-
+			if (!doubleBuffer.shouldSyncToDisk()){
+                return;
 			}
+			// 如果代码进行到这里,说明需要刷磁盘
+			isSchedulingSync = true;
 		}
 		
 		logSync();
 	}
+
+	/**
+	 * 等待正在调度的刷磁盘的操作
+	 */
+	private void waitSchedulingSync() {
+		try{
+			while (isSchedulingSync){
+				wait(1000); // 此时就释放锁,等待一秒
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+}
 	
 	/**
 	 * 将内存缓冲中的数据刷入磁盘文件中
@@ -71,6 +90,7 @@ public class FSEditlog {
 	private void logSync() {
 		// 再次尝试加锁
 		synchronized(this) {
+			long txid = localTxid.get(); // 获取到本地线程的副本
 			// 如果说当前正好有人在刷内存缓冲到磁盘中去
 			if(isSyncRunning) {
 				// 那么此时这里应该有一些逻辑判断
@@ -81,20 +101,12 @@ public class FSEditlog {
 				// 那么这个时候来一个线程，他对应的txid = 3，此时他是可以直接返回了
 				// 就代表说肯定是他对应的edits log已经被别的线程在刷入磁盘了
 				// 这个时候txid = 3的线程就不需要等待了
-				long txid = localTxid.get(); // 获取到本地线程的副本
-				if(txid <= syncMaxTxid) {
+
+				if(txid <= syncTxid) { //如果有线程在同步 syncTxId=30的数据
+					// 进来一个线程结果它的txid=25 此时就直接返回了
 					return;
 				}
-				
-				// 此时再来一个txid = 9的线程的话，那么他会发现说，已经有线程在等待刷下一批数据到磁盘了
-				// 此时他会直接返回
-				// 假如说此时来一个txid = 6的线程，那么的话，他是不好说的
-				// 他就需要做一些等待，同时要释放掉锁
-				if(isWaitSync) {
-					return;
-				}
-				// 比如说此时可能是txid = 15的线程在这里等待
-				isWaitSync = true;
+
 				while(isSyncRunning) {
 					try {
 						wait(2000);
@@ -102,24 +114,29 @@ public class FSEditlog {
 						e.printStackTrace();  
 					}
 				}
-				isWaitSync = false;
 			}
 			
 			// 交换两块缓冲区
-			editLogBuffer.setReadyToSync();
+			doubleBuffer.setReadyToSync();
 			// 然后可以保存一下当前要同步到磁盘中去的最大的txid
 			// 此时editLogBuffer中的syncBuffer这块区域，交换完以后这里可能有多条数据
 			// 而且他里面的edits log的txid一定是从小到大的
 			// 此时要同步的txid = 6,7,8,9,10,11,12
 			// syncMaxTxid = 12
-			syncMaxTxid = editLogBuffer.getSyncMaxTxid();
+			syncTxid = txid;
+			// 当前doubleBuffer的当前这块缓冲区里
+			// 写入的最大的一个txid
+			// syncTxid代表: 把txid=30为止的之前所有的editslog都会刷入磁盘中
+			// editslog的txid都是依次递增的
 			// 设置当前正在同步到磁盘的标志位
+			isSchedulingSync = false;
+			notifyAll(); // 唤醒那些还卡在while 循环的线程
 			isSyncRunning = true;
 		}
 		
 		// 开始同步内存缓冲的数据到磁盘文件里去
 		// 这个过程其实是比较慢，基本上肯定是毫秒级了，弄不好就要几十毫秒
-		editLogBuffer.flush();  
+		doubleBuffer.flush();
 		
 		synchronized(this) {
 			// 同步完了磁盘之后，就会将标志位复位，再释放锁
