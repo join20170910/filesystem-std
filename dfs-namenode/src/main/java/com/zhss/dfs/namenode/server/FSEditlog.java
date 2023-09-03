@@ -94,7 +94,6 @@ public class FSEditlog {
 			// 如果说当前正好有人在刷内存缓冲到磁盘中去
 			if(isSyncRunning) {
 				// 那么此时这里应该有一些逻辑判断
-				
 				// 假如说某个线程已经把txid = 1,2,3,4,5的edits log都从syncBuffer刷入磁盘了
 				// 或者说此时正在刷入磁盘中
 				// 此时syncMaxTxid = 5，代表的是正在输入磁盘的最大txid
@@ -106,10 +105,10 @@ public class FSEditlog {
 					// 进来一个线程结果它的txid=25 此时就直接返回了
 					return;
 				}
-
+				//如果当前线程的txid=80,就说明它需要去刷数据,但是需要等待别人先刷新完成
 				while(isSyncRunning) {
 					try {
-						wait(2000);
+						wait(1000);
 					} catch (Exception e) {
 						e.printStackTrace();  
 					}
