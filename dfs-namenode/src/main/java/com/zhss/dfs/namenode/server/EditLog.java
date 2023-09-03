@@ -6,12 +6,27 @@ package com.zhss.dfs.namenode.server;
 	 */
 	public class EditLog {
 	
-		long txid;
-		String content;
+		private long txid;
+		private String content;
 		
 		public EditLog(long txid, String content) {
 			this.txid = txid;
 			this.content = content;
 		}
-		
-	}
+
+  public long getTxid() {
+    return txid;
+  }
+
+  public void setTxid(long txid) {
+    this.txid = txid;
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+}

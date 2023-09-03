@@ -4,7 +4,7 @@ package com.zhss.dfs.namenode.server;
  *
  * @author zhonghuashishan
  */
-class DoubleBuffer {
+public class DoubleBuffer {
 
   public final Long EDIT_LOG_BUFFER_LIMIT = 512 * 1024L;
 
@@ -22,7 +22,7 @@ class DoubleBuffer {
    */
   public void write(EditLog log) {
     currentBuffer.write(log);
-	maxTxid = log.txid;
+    maxTxid = log.getTxid();
   }
 
   /** 交换两块缓冲区，为了同步内存数据到磁盘做准备 */
@@ -33,7 +33,10 @@ class DoubleBuffer {
   }
 
   /** 将syncBuffer缓冲区中的数据刷入磁盘中 */
-  public void flush() {}
+  public void flush() {
+    syncBuffer.flush();
+    syncBuffer.clear();
+  }
 
   /** EditsLog 缓冲区 */
   class EditLogBuffer {
@@ -42,7 +45,10 @@ class DoubleBuffer {
      *
      * @param log
      */
-    public void write(EditLog log) {}
+    public void write(EditLog log) {
+      System.out.println("在currentBuffer中写入一条数据:" + log.toString());
+
+    }
 
     /**
      * 获取当前缓冲区已经写入数据字节数量
@@ -52,7 +58,10 @@ class DoubleBuffer {
     public Long size() {
       return 0L;
     }
-  }
+
+    public void flush() {}
+  public void clear() {
+}}
   /**
    * 判断一下当前的缓冲区是否写满了需要刷到磁盘上去
    *
