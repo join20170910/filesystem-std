@@ -140,7 +140,11 @@ public class FSEditlog {
 		
 		// 开始同步内存缓冲的数据到磁盘文件里去
 		// 这个过程其实是比较慢，基本上肯定是毫秒级了，弄不好就要几十毫秒
-		doubleBuffer.flush();
+		try{
+			doubleBuffer.flush();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		
 		synchronized(this) {
 			// 同步完了磁盘之后，就会将标志位复位，再释放锁
