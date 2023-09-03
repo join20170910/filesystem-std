@@ -11,7 +11,9 @@ package com.zhss.dfs.namenode.server;
 		
 		public EditLog(long txid, String content) {
 			this.txid = txid;
-			this.content = content;
+            JSONObject jsonObject = JSONObject.parseObject(content);
+            jsonObject.put("txid",txid);
+            this.content = jsonObject.toString();
 		}
 
   public long getTxid() {
@@ -20,11 +22,6 @@ package com.zhss.dfs.namenode.server;
 
   public void setTxid(long txid) {
     this.txid = txid;
-
-      JSONObject jsonObject = JSONObject.parseObject(content);
-      jsonObject.put("txid",txid);
-
-      this.content = jsonObject.toString();
   }
 
   public String getContent() {
