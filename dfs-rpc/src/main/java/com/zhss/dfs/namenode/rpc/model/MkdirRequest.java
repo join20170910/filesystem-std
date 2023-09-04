@@ -19,8 +19,7 @@ public  final class MkdirRequest extends
   }
 
   @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
+  public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private MkdirRequest(
@@ -96,9 +95,7 @@ public  final class MkdirRequest extends
       getPathBytes() {
     Object ref = path_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       path_ = b;
       return b;
     } else {
@@ -136,6 +133,7 @@ public  final class MkdirRequest extends
   }
 
   private static final long serialVersionUID = 0L;
+
   @Override
   public boolean equals(final Object obj) {
     if (obj == this) {
@@ -229,6 +227,7 @@ public  final class MkdirRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
+
   public static Builder newBuilder(MkdirRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
@@ -238,8 +237,7 @@ public  final class MkdirRequest extends
   }
 
   @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
+  protected Builder newBuilderForType(BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -336,7 +334,7 @@ public  final class MkdirRequest extends
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof MkdirRequest) {
-        return mergeFrom((MkdirRequest)other);
+        return mergeFrom((MkdirRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -398,9 +396,8 @@ public  final class MkdirRequest extends
         getPathBytes() {
       Object ref = path_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         path_ = b;
         return b;
       } else {

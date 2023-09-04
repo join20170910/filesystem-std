@@ -153,7 +153,19 @@ public class FSEditlog {
 			notifyAll();
 		}
 	}
-	
+
+  /**
+   * 强制把内存缓冲区的数据刷入到磁盘中
+   *
+   * @throws IOException
+   */
+  public void flush() {
+    try {
+      doubleBuffer.flush();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+	}
 	
 	
 }

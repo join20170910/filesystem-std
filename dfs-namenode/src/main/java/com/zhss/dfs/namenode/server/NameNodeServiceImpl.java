@@ -1,6 +1,6 @@
 package com.zhss.dfs.namenode.server;
 
-import com.zhss.dfs.namenode.rpc.model.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;import com.zhss.dfs.namenode.rpc.model.*;
 import com.zhss.dfs.namenode.rpc.service.NameNodeServiceGrpc;
 import io.grpc.stub.StreamObserver;
 /**
@@ -12,6 +12,7 @@ public class NameNodeServiceImpl implements NameNodeServiceGrpc.NameNodeService 
 
   public static final Integer STATUS_SUCCESS = 1;
   public static final Integer STATUS_FAILURE = 2;
+  public static final Integer STATUS_SHUTDOWN = 3;
 
   /** 负责管理元数据的核心组件
    * 它是一个逻辑上的组件,主要是负责管理元数据的更新
@@ -21,6 +22,7 @@ public class NameNodeServiceImpl implements NameNodeServiceGrpc.NameNodeService 
   private FSNamesystem namesystem;
   /** 负责管理集群中所有的datanode的组件 */
   private DataNodeManager datanodeManager;
+  private volatile Boolean isRunning = true;
 
   public NameNodeServiceImpl(FSNamesystem namesystem, DataNodeManager datanodeManager) {
     this.namesystem = namesystem;
@@ -76,13 +78,35 @@ public class NameNodeServiceImpl implements NameNodeServiceGrpc.NameNodeService 
   @Override
   public void mkdir(MkdirRequest request, StreamObserver<MkdirResponse> responseObserver) {
     try {
-      this.namesystem.mkdir(request.getPath());
-      System.out.println("创建目录:path=" + request.getPath());
-		MkdirResponse response = MkdirResponse.newBuilder().setStatus(STATUS_SUCCESS).build();
+      MkdirResponse response = null;
+      if (!isRunning){
+         response = MkdirResponse.newBuilder().setStatus(STATUS_SHUTDOWN).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+      }else {
+        this.namesystem.mkdir(request.getPath());
+        response = MkdirResponse.newBuilder().setStatus(STATUS_SUCCESS).build();
+      }
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-}
+
+  /**
+   * 优雅关闭
+   * @param request
+   * @param responseObserver
+   */
+  @Override public void shutdown(ShutdownRequest request, StreamObserver<ShutdownResponse> responseObserver) {
+    try {
+      this.isRunning = false;
+      this.namesystem.flush();
+      ShutdownResponse response = ShutdownResponse.newBuilder().setStatus(STATUS_SUCCESS).build();
+      responseObserver.onNext(response);
+      responseObserver.onCompleted();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    }}

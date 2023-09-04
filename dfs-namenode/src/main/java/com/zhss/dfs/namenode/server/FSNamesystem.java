@@ -33,4 +33,11 @@ public class FSNamesystem {
 		return true;
 	}
 
+	/**
+	 * 强制把内存里的edits log 刷入磁盘中
+	 */
+	public void flush(){
+		this.editlog.flush();
+	}
+
 }

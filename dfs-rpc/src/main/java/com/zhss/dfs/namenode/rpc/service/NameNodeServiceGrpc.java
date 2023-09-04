@@ -125,35 +125,42 @@ public class NameNodeServiceGrpc {
     }
 
     @Override
-    protected NameNodeServiceStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected NameNodeServiceStub build(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new NameNodeServiceStub(channel, callOptions);
     }
 
     @Override
-    public void register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.RegisterResponse> responseObserver) {
+    public void register(
+        com.zhss.dfs.namenode.rpc.model.RegisterRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.RegisterResponse>
+            responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_REGISTER, getCallOptions()), request, responseObserver);
     }
 
     @Override
-    public void heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse> responseObserver) {
+    public void heartbeat(
+        com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse>
+            responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_HEARTBEAT, getCallOptions()), request, responseObserver);
     }
 
     @Override
-    public void mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse> responseObserver) {
+    public void mkdir(
+        com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse>
+            responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_MKDIR, getCallOptions()), request, responseObserver);
     }
 
     @Override
-    public void shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.ShutdownResponse> responseObserver) {
+    public void shutdown(
+        com.zhss.dfs.namenode.rpc.model.ShutdownRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.ShutdownResponse>
+            responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_SHUTDOWN, getCallOptions()), request, responseObserver);
     }
@@ -171,31 +178,35 @@ public class NameNodeServiceGrpc {
     }
 
     @Override
-    protected NameNodeServiceBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected NameNodeServiceBlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new NameNodeServiceBlockingStub(channel, callOptions);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.RegisterResponse register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.RegisterResponse register(
+        com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_REGISTER, getCallOptions(), request);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.HeartbeatResponse heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.HeartbeatResponse heartbeat(
+        com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_HEARTBEAT, getCallOptions(), request);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(
+        com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_MKDIR, getCallOptions(), request);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.ShutdownResponse shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.ShutdownResponse shutdown(
+        com.zhss.dfs.namenode.rpc.model.ShutdownRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_SHUTDOWN, getCallOptions(), request);
     }
@@ -213,35 +224,39 @@ public class NameNodeServiceGrpc {
     }
 
     @Override
-    protected NameNodeServiceFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected NameNodeServiceFutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new NameNodeServiceFutureStub(channel, callOptions);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.RegisterResponse> register(
-        com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<
+            com.zhss.dfs.namenode.rpc.model.RegisterResponse>
+        register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_REGISTER, getCallOptions()), request);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse> heartbeat(
-        com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<
+            com.zhss.dfs.namenode.rpc.model.HeartbeatResponse>
+        heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_HEARTBEAT, getCallOptions()), request);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.MkdirResponse> mkdir(
-        com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<
+            com.zhss.dfs.namenode.rpc.model.MkdirResponse>
+        mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_MKDIR, getCallOptions()), request);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.ShutdownResponse> shutdown(
-        com.zhss.dfs.namenode.rpc.model.ShutdownRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<
+            com.zhss.dfs.namenode.rpc.model.ShutdownResponse>
+        shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_SHUTDOWN, getCallOptions()), request);
     }

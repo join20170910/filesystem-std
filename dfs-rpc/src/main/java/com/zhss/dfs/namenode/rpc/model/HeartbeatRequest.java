@@ -20,8 +20,7 @@ public  final class HeartbeatRequest extends
   }
 
   @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
+  public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private HeartbeatRequest(
@@ -103,9 +102,7 @@ public  final class HeartbeatRequest extends
       getIpBytes() {
     Object ref = ip_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       ip_ = b;
       return b;
     } else {
@@ -137,9 +134,7 @@ public  final class HeartbeatRequest extends
       getHostnameBytes() {
     Object ref = hostname_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
+      com.google.protobuf.ByteString b = com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       hostname_ = b;
       return b;
     } else {
@@ -183,6 +178,7 @@ public  final class HeartbeatRequest extends
   }
 
   private static final long serialVersionUID = 0L;
+
   @Override
   public boolean equals(final Object obj) {
     if (obj == this) {
@@ -280,6 +276,7 @@ public  final class HeartbeatRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
+
   public static Builder newBuilder(HeartbeatRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
@@ -289,8 +286,7 @@ public  final class HeartbeatRequest extends
   }
 
   @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
+  protected Builder newBuilderForType(BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -390,7 +386,7 @@ public  final class HeartbeatRequest extends
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof HeartbeatRequest) {
-        return mergeFrom((HeartbeatRequest)other);
+        return mergeFrom((HeartbeatRequest) other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -456,9 +452,8 @@ public  final class HeartbeatRequest extends
         getIpBytes() {
       Object ref = ip_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         ip_ = b;
         return b;
       } else {
@@ -525,9 +520,8 @@ public  final class HeartbeatRequest extends
         getHostnameBytes() {
       Object ref = hostname_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         hostname_ = b;
         return b;
       } else {
