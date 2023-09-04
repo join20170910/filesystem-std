@@ -161,7 +161,8 @@ public class FSEditlog {
    */
   public void flush() {
     try {
-      doubleBuffer.flush();
+		doubleBuffer.setReadyToSync();
+      	doubleBuffer.flush();
     } catch (IOException e) {
       e.printStackTrace();
     }

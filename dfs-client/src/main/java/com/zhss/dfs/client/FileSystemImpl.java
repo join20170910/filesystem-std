@@ -1,6 +1,7 @@
 package com.zhss.dfs.client;
 
-import com.zhss.dfs.namenode.rpc.model.MkdirRequest;import com.zhss.dfs.namenode.rpc.model.MkdirResponse;import com.zhss.dfs.namenode.rpc.model.RegisterRequest;import com.zhss.dfs.namenode.rpc.service.NameNodeServiceGrpc;
+import com.zhss.dfs.namenode.rpc.model.*;
+import com.zhss.dfs.namenode.rpc.service.NameNodeServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NegotiationType;
 import io.grpc.netty.NettyChannelBuilder;
@@ -31,7 +32,19 @@ public class FileSystemImpl implements FileSystem {
                 .build();
         MkdirResponse response = namenode.mkdir(request);
     System.out.println("创建目录的响应:status = " + response.getStatus());
+
     }
 
+    /**
+     * 优雅关闭
+     * @throws Exception
+     */
+    @Override public void shutdown()throws Exception {
 
-}
+        ShutdownRequest request = ShutdownRequest.newBuilder()
+            .setCode(1)
+            .build();
+        ShutdownResponse response = namenode.shutdown(request);
+    System.out.println("优雅关闭的响应:status = " + response.getStatus());
+
+}}

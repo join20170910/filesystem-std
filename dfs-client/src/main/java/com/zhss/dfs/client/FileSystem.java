@@ -5,4 +5,5 @@ package com.zhss.dfs.client;
  */
 public interface FileSystem {
     void mkdir(String path) throws Exception;
+    void shutdown() throws Exception;
 }
