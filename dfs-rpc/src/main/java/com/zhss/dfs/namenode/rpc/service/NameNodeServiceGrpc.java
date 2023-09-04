@@ -48,6 +48,15 @@ public class NameNodeServiceGrpc {
               "com.zhss.dfs.namenode.rpc.NameNodeService", "mkdir"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.MkdirRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.MkdirResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi
+  public static final io.grpc.MethodDescriptor<com.zhss.dfs.namenode.rpc.model.ShutdownRequest,
+      com.zhss.dfs.namenode.rpc.model.ShutdownResponse> METHOD_SHUTDOWN =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "com.zhss.dfs.namenode.rpc.NameNodeService", "shutdown"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.ShutdownRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.zhss.dfs.namenode.rpc.model.ShutdownResponse.getDefaultInstance()));
 
   public static NameNodeServiceStub newStub(io.grpc.Channel channel) {
     return new NameNodeServiceStub(channel);
@@ -73,6 +82,9 @@ public class NameNodeServiceGrpc {
 
     public void mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
         io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse> responseObserver);
+
+    public void shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.ShutdownResponse> responseObserver);
   }
 
   public static interface NameNodeServiceBlockingClient {
@@ -82,6 +94,8 @@ public class NameNodeServiceGrpc {
     public com.zhss.dfs.namenode.rpc.model.HeartbeatResponse heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request);
 
     public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request);
+
+    public com.zhss.dfs.namenode.rpc.model.ShutdownResponse shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request);
   }
 
   public static interface NameNodeServiceFutureClient {
@@ -94,6 +108,9 @@ public class NameNodeServiceGrpc {
 
     public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.MkdirResponse> mkdir(
         com.zhss.dfs.namenode.rpc.model.MkdirRequest request);
+
+    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.ShutdownResponse> shutdown(
+        com.zhss.dfs.namenode.rpc.model.ShutdownRequest request);
   }
 
   public static class NameNodeServiceStub extends io.grpc.stub.AbstractStub<NameNodeServiceStub>
@@ -108,35 +125,37 @@ public class NameNodeServiceGrpc {
     }
 
     @Override
-    protected NameNodeServiceStub build(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+    protected NameNodeServiceStub build(io.grpc.Channel channel,
+        io.grpc.CallOptions callOptions) {
       return new NameNodeServiceStub(channel, callOptions);
     }
 
     @Override
-    public void register(
-        com.zhss.dfs.namenode.rpc.model.RegisterRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.RegisterResponse>
-            responseObserver) {
+    public void register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.RegisterResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_REGISTER, getCallOptions()), request, responseObserver);
     }
 
     @Override
-    public void heartbeat(
-        com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse>
-            responseObserver) {
+    public void heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_HEARTBEAT, getCallOptions()), request, responseObserver);
     }
 
     @Override
-    public void mkdir(
-        com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
-        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse>
-            responseObserver) {
+    public void mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_MKDIR, getCallOptions()), request, responseObserver);
+    }
+
+    @Override
+    public void shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request,
+        io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.ShutdownResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_SHUTDOWN, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -152,30 +171,33 @@ public class NameNodeServiceGrpc {
     }
 
     @Override
-    protected NameNodeServiceBlockingStub build(
-        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+    protected NameNodeServiceBlockingStub build(io.grpc.Channel channel,
+        io.grpc.CallOptions callOptions) {
       return new NameNodeServiceBlockingStub(channel, callOptions);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.RegisterResponse register(
-        com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.RegisterResponse register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_REGISTER, getCallOptions(), request);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.HeartbeatResponse heartbeat(
-        com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.HeartbeatResponse heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_HEARTBEAT, getCallOptions(), request);
     }
 
     @Override
-    public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(
-        com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
+    public com.zhss.dfs.namenode.rpc.model.MkdirResponse mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_MKDIR, getCallOptions(), request);
+    }
+
+    @Override
+    public com.zhss.dfs.namenode.rpc.model.ShutdownResponse shutdown(com.zhss.dfs.namenode.rpc.model.ShutdownRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_SHUTDOWN, getCallOptions(), request);
     }
   }
 
@@ -191,39 +213,44 @@ public class NameNodeServiceGrpc {
     }
 
     @Override
-    protected NameNodeServiceFutureStub build(
-        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+    protected NameNodeServiceFutureStub build(io.grpc.Channel channel,
+        io.grpc.CallOptions callOptions) {
       return new NameNodeServiceFutureStub(channel, callOptions);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<
-            com.zhss.dfs.namenode.rpc.model.RegisterResponse>
-        register(com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.RegisterResponse> register(
+        com.zhss.dfs.namenode.rpc.model.RegisterRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_REGISTER, getCallOptions()), request);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<
-            com.zhss.dfs.namenode.rpc.model.HeartbeatResponse>
-        heartbeat(com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.HeartbeatResponse> heartbeat(
+        com.zhss.dfs.namenode.rpc.model.HeartbeatRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_HEARTBEAT, getCallOptions()), request);
     }
 
     @Override
-    public com.google.common.util.concurrent.ListenableFuture<
-            com.zhss.dfs.namenode.rpc.model.MkdirResponse>
-        mkdir(com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.MkdirResponse> mkdir(
+        com.zhss.dfs.namenode.rpc.model.MkdirRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_MKDIR, getCallOptions()), request);
+    }
+
+    @Override
+    public com.google.common.util.concurrent.ListenableFuture<com.zhss.dfs.namenode.rpc.model.ShutdownResponse> shutdown(
+        com.zhss.dfs.namenode.rpc.model.ShutdownRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_SHUTDOWN, getCallOptions()), request);
     }
   }
 
   private static final int METHODID_REGISTER = 0;
   private static final int METHODID_HEARTBEAT = 1;
   private static final int METHODID_MKDIR = 2;
+  private static final int METHODID_SHUTDOWN = 3;
 
   private static class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -252,6 +279,10 @@ public class NameNodeServiceGrpc {
         case METHODID_MKDIR:
           serviceImpl.mkdir((com.zhss.dfs.namenode.rpc.model.MkdirRequest) request,
               (io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.MkdirResponse>) responseObserver);
+          break;
+        case METHODID_SHUTDOWN:
+          serviceImpl.shutdown((com.zhss.dfs.namenode.rpc.model.ShutdownRequest) request,
+              (io.grpc.stub.StreamObserver<com.zhss.dfs.namenode.rpc.model.ShutdownResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -292,6 +323,13 @@ public class NameNodeServiceGrpc {
               com.zhss.dfs.namenode.rpc.model.MkdirRequest,
               com.zhss.dfs.namenode.rpc.model.MkdirResponse>(
                 serviceImpl, METHODID_MKDIR)))
+        .addMethod(
+          METHOD_SHUTDOWN,
+          asyncUnaryCall(
+            new MethodHandlers<
+              com.zhss.dfs.namenode.rpc.model.ShutdownRequest,
+              com.zhss.dfs.namenode.rpc.model.ShutdownResponse>(
+                serviceImpl, METHODID_SHUTDOWN)))
         .build();
   }
 }
