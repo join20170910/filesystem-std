@@ -19,7 +19,8 @@ public  final class ShutdownRequest extends
   }
 
   @Override
-  public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private ShutdownRequest(
@@ -110,7 +111,6 @@ public  final class ShutdownRequest extends
   }
 
   private static final long serialVersionUID = 0L;
-
   @Override
   public boolean equals(final Object obj) {
     if (obj == this) {
@@ -204,7 +204,6 @@ public  final class ShutdownRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-
   public static Builder newBuilder(ShutdownRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
@@ -214,7 +213,8 @@ public  final class ShutdownRequest extends
   }
 
   @Override
-  protected Builder newBuilderForType(BuilderParent parent) {
+  protected Builder newBuilderForType(
+      BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -311,7 +311,7 @@ public  final class ShutdownRequest extends
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof ShutdownRequest) {
-        return mergeFrom((ShutdownRequest) other);
+        return mergeFrom((ShutdownRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
