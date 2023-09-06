@@ -1,6 +1,6 @@
 package com.zhss.dfs.namenode.server;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;import java.io.IOException;import java.io.RandomAccessFile;import java.nio.ByteBuffer;import java.nio.channels.FileChannel;
+import java.io.FileOutputStream;import java.io.IOException;import java.io.RandomAccessFile;import java.nio.ByteBuffer;import java.nio.channels.FileChannel;import java.util.ArrayList;import java.util.List;
 
 /**
  * 内存双缓冲
@@ -23,6 +23,11 @@ public class DoubleBuffer {
   private Long startTxid = 1L;
 
   /**
+   * 已经输入到磁盘的txid
+   */
+  private List<String> flushedTxIds = new ArrayList<>();
+
+  /**
    * 将edits log写到内存缓冲里去
    *
    * @param log
@@ -42,6 +47,23 @@ public class DoubleBuffer {
   public void flush()throws IOException {
     syncBuffer.flush();
     syncBuffer.clear();
+  }
+
+  /**
+   * 获取 已经刷入磁盘的editslog数据
+   * @return
+   */
+  public List<String> getFlushedTxIds(){
+    return this.flushedTxIds;
+  }
+
+  /**
+   * 获取当前缓冲区里的数据
+   * @return
+   */
+  public String[] getBufferedEditsLog(){
+    String editsLogRawData = new String(currentBuffer.getBufferData());
+    return editsLogRawData.split("\n");
   }
 
   /** EditsLog 缓冲区 */
@@ -94,6 +116,8 @@ public class DoubleBuffer {
       ByteBuffer dataBuffer = ByteBuffer.wrap(data);
       String editsLogFilePath = "/Users/apple/IdeaProjects/distributed-filesystem/editslog/" + "edits-"
               + startTxid + "-" + endTxid + ".log";
+
+      flushedTxIds.add(startTxid + "-" + endTxid );
       RandomAccessFile file = null;
       FileOutputStream out = null;
       FileChannel editsLogFileChannel = null;
@@ -129,7 +153,16 @@ public class DoubleBuffer {
      */
     public void clear() {
       buffer.reset();
-}}
+}
+
+    /**
+     * 获取内存缓冲区当前的数据
+     * @return
+     */
+    public byte[] getBufferData(){
+      return buffer.toByteArray();
+    }
+  }
   /**
    * 判断一下当前的缓冲区是否写满了需要刷到磁盘上去
    *

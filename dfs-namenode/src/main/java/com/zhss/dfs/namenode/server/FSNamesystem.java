@@ -40,4 +40,11 @@ public class FSNamesystem {
 		this.editlog.flush();
 	}
 
+	/**
+	 * 获取一个FSEditlog组件
+	 * @return
+	 */
+	public FSEditlog getEditLog(){
+		return editlog;
+	}
 }
